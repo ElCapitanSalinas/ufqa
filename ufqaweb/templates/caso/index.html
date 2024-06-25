@@ -1,0 +1,269 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaña - UFQA</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#ff004d">
+    <meta name="apple-mobile-web-app-title" content="Una Familia Que Ayuda">
+    <meta name="application-name" content="Una Familia Que Ayuda">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff"> 
+    
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="{% static 'caso/main.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <script src="{% static 'navbar.js' %}"></script>
+</head>
+<body>
+    <div class="mobile-page">
+        
+            <div class="banner-mobile" style="background-image: url('/media/{{ bannerimgs.0.image }}');">
+                <div class="mobile-navbar-var3">
+                    <div class="navbar-logo">
+                        <a href="/"><img src="{% static 'assets/logo-1-x.png' %}" width="40%" alt=""></a>
+                    </div>
+                    <div class="navbar-expand-icon-2"><i class="bi bi-list"></i></div>
+                </div>
+                <div class="navbar-expanded">
+                    <div class="navbar-expanded-container">
+                        <div class="navbar-expanded-container-item"><a href="/">Inicio</a></div>
+                        <br>
+                        <div class="navbar-expanded-container-item"><a href="/about/">Descubrir</a></div>
+                        <div class="navbar-expanded-container-item"><a href="/allcases/">Campañas</a></div>
+                        <br>
+                        <div class="navbar-expanded-container-item"><a href="https://www.instagram.com/unafa_miliaqueayuda19/">Contáctanos</a></div>
+                        <div class="navbar-expanded-container-item"><a href="/about/#quienes-somos">Quienes Somos</a></div>
+                        <div class="navbar-expanded-container-item"><a href="/about/">Nuestro Equipo</a></div>
+                        <div class="navbar-expanded-container-item"><a href="/about/#mision">Misión y Visión</a></div>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color: black;"></div>
+        <div class="page-content">
+            <div class="page-margin">
+                <div class="page-content-title titulo-desktop" style="color: white; margin-top: -35vh; margin-bottom: 10vh;">{{ caso.titulo }}</div>
+                <!-- <br> -->
+                <div class="mobile-image-section">
+                    <div class="mobile-image-section-active-img">
+                        <img class="active-img" src="/media/{{ bannerimgs.0.image }}" alt="">
+                    </div>
+                    <div class="mobile-image-section-bottom">
+                        {% for img in bannerimgs %}
+                        <div class="mobile-image-section-bottom-img-item img-mobile" data-img="/media/{{ img.image }}" ><img src="/media/{{ img.image }}" alt=""></div>
+                        {% endfor %}
+<!--                         
+                        <div class="mobile-image-section-bottom-img-item img-mobile" data-img="/media/{{ bannerimgs.0.image }}" ><img src="/media/{{ bannerimgs.0.image }}" alt=""></div> -->
+                        <div class="mobile-image-section-bottom-img-item" data-img="/media/{{ bannerimgs.1.image }}"><img src="/media/{{ bannerimgs.1.image }}" alt=""></div>
+                    </div>
+                </div>
+                <div class="about-section">
+                    <div class="page-content-title" style="text-align: left; margin-top: 5vh; width: 100%; font-size: 1.7rem;">{{ caso.titulo }}</div>
+                    <div class="page-content-text">
+                        {{ caso.descl }}
+                    </div>                        
+                </div>
+
+                <div class="case-progressbar">
+                    <div class="case-progressbar-fill" style="width: {{ caso.get_percentage|floatformat:-0 }}%;"></div>
+                </div>
+                <div class="item-carrusel-movil-info-money">
+                    <div class="collected">{{ caso.recolectado }}$ Recaudados</div>
+                    <div class="percent">{{ caso.get_percentage|floatformat:-0 }}%</div>
+                </div>
+                <div class="btns-container">
+                    <div class="btn donateufqa"><a href="https://wa.me/584123341682">DONAR EN UFqA</a></div>
+                    {% if caso.directDonation == 1 %}
+                        <div class="btn directly" data-toggle="modal" data-target="#myModal">DONAR DIRECTAMENTE</div>
+                    {% endif %}
+                    <div class="btn share"><a href="whatsapp://send?text=Mira esta campaña en UFQA! Vamos a transformar el mundo." data-action="share/whatsapp/share">COMPARTIR</a></div>
+                </div>
+                
+                <div class="line-div"></div>
+                <div class="page-content-title" style="text-align: left; margin-top: 1vh; width: 100%; font-size: .8rem; letter-spacing: 1px;">DETALLES DEL CASO</div>
+                <div class="details-section">
+                    <div class="case-data-boxes">
+                        <div class="case-data-boxes-item">
+                            <div class="case-data-boxes-item-icon"><i class="bi bi-globe-americas"></i></div>
+                            <div class="case-data-boxes-item-content">
+                                <div class="case-data-boxes-item-content-title">Ubicación del caso</div>
+                                <div class="case-data-boxes-item-content-data">{{ caso.ubicacion }}</div>
+                            </div>
+                        </div>
+                        <div class="case-data-boxes-item">
+                            <div class="case-data-boxes-item-icon"><i class="bi bi-person-raised-hand"></i></div>
+                            <div class="case-data-boxes-item-content">
+                                <div class="case-data-boxes-item-content-title">Beneficiados directos</div>
+                                <div class="case-data-boxes-item-content-data">{{ caso.beneficiados }}</div>
+                            </div>
+                        </div>
+                        <div class="case-data-boxes-item">
+                            <div class="case-data-boxes-item-icon"><i class="bi bi-coin"></i></div>
+                            <div class="case-data-boxes-item-content">
+                                <div class="case-data-boxes-item-content-title">Meta</div>
+                                <div class="case-data-boxes-item-content-data">US ${{ caso.meta }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-galeria">
+                        <div class="page-content-title title-galeria" style="text-align: left; margin-top: -5vh; width: 100%; font-size: .8rem; letter-spacing: 1px;">GALERIA</div>
+                        {% for img in bannerimgs %}
+                        <div class="galeria-item" data-img="/media/{{ img.image }}"><img src="/media/{{ img.image }}" alt=""></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="line-div"></div>
+                <div class="case-act">
+                    <div class="page-content-title" style="text-align: left; margin-top: 1vh; width: 100%; font-size: .8rem; letter-spacing: 1px;">ACTUALIZACIÓN DEL CASO</div>
+                    <div class="update-box-container">
+                        {% if caso.update %}
+                            <div class="update-box">
+                                <div class="update-box-date">Actualizado: {{ caso.last_update }}</div>
+                                <div class="update-box-updatedby">Por: Equipo UFqA</div>
+                                <div class="update-box-text"> {{ caso.update }}.</div>
+                                <div class="update-box-material-title">Material</div>
+                                <div class="update-box-material-pictures" style="font-size: .7rem; height: 3vh;">
+                                    Puedes ver actualizaciones en las redes de UFqA.
+                                </div>
+                            </div>
+                        {% else %}
+                            Esta campaña no ha recibido actualización.
+                        {% endif %}
+                        <br>
+                        <div class="update-box-2">
+                            <div class="page-content-title" style="text-align: left; margin-top: 1vh; width: 100%; font-size: .8rem; letter-spacing: 1px;">DONADORES</div>
+                            <div class="donators-box">
+                                {% if donators %}
+                                    {% for donador in donators %}
+                                        <div class="donator-item"><i class="bi bi-person-hearts"></i> {{donador.donatorName}}</div>
+                                    {% endfor %}
+                                {% else %}
+                                    Esta lista es anonima.
+                                {% endif %}
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <br><br>
+                <div class="case-act">
+                    <div class="page-content-title" style="text-align: left; margin-top: 1vh; width: 100%; font-size: .8rem; letter-spacing: 1px;">MÁS CASOS DE UFQA</div>
+                    <div class="mobile-morecases">
+                        {% for item in otherCases %}
+                        <div class="mobile-morecases-case">
+                            <a href="/case/{{ item.caseid }}/">
+                                <div class="case-img">
+                                    <img src="/media/{{ item.banner }}" alt="">
+                                </div>
+                                <div class="case-title">{{ item.titulo }}</div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+
+
+            
+            <br><br>
+            <div class="blue-frame-mobile">
+                <div class="texto-contacto">Únete hoy a un movimiento que <b>mejora vidas.
+                    Todos podemos ser héroes cuando nos unimos para ayudar</b>
+                </div>
+                <div class="contactanos-text">
+                    <div class="text-itself-contact">Contáctanos</div>
+                    <div class="contact-icons">
+                        <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-instagram"></i></a></div>
+                        <div class="icon"><a href="https://www.tiktok.com/@unafamiliaqueayuda19"><i class="bi bi-tiktok"></i></a></div>
+                        <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-facebook"></i></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-footer">
+               <div class="mobile-footer-section">
+                    <div class="section-title">Acerca de</div>
+                    <div class="section-items">
+                        <a href="/about/">Sobre Nosotros</a> <br>
+                        <a href="/about/">Misión y Visión</a> <br>
+                        <a href="/about/">Únete a noostros</a> <br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section">
+                    <div class="section-title">Campañas</div>
+                    <div class="section-items">
+                        <a href="/allcases/">Todas las campañas</a> <br>
+                        <a href="https://wa.me/584123341682">Donar a UFQA</a> <br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section">
+                    <div class="section-title">Contacto</div>
+                    <div class="section-items">
+                        <a href="https://www.instagram.com/unafa_miliaqueayuda19/">Instagram</a> <br>
+                        <a href="https://www.tiktok.com/@unafamiliaqueayuda19">TikTok</a> <br>
+                        <a href="/about/">PR</a><br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section" style="">
+                    <img src="{% static 'assets/logoblack.png' %}" alt="">
+                </div>
+            </div>
+            
+        </div>
+        <div class="copyright-text-mobile">Una Familia Que Ayuda. All Copyrights reserved. 2024.</div>
+    </div>
+
+    <div class="modal-bankfunctions" id="bankfunctions">
+        <div class="modal-card">
+            <div class="card-title">Mediante esta cuenta puedes hacer tu donación:</div>
+
+            <hr style="opacity: 0.5;">
+            <div class="card-text">
+                Banco: {{ caso.accBank }}
+                <br>
+                No. de cuenta: {{ caso.accNumber }}
+                <br>
+                No te olvides de incluir tu nombre en los detalles!
+            </div>
+            <div class="close-btn"><i class="bi bi-x-lg"></i></div>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function () {
+            if ($(window).width() < 1025){
+                $('.mobile-image-section-bottom-img-item').click(function (e) { 
+                    e.preventDefault();
+                    let image = $(this).data('img');
+                    $('.active-img').fadeOut(400, function(){
+                        $('.active-img').attr('src', image);
+                        $('.active-img').fadeIn(400);
+                    });
+                  
+                });
+            }
+
+            $('.directly').click(function (e) { 
+                e.preventDefault();
+                $('#bankfunctions').fadeIn();
+            });
+
+            $('.close-btn').click(function (e) { 
+                e.preventDefault();
+                $('#bankfunctions').fadeOut();
+            });
+        });
+    </script>
+
+</body>
+</html>

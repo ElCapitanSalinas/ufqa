@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campañas - UFQA</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#ff004d">
+    <meta name="apple-mobile-web-app-title" content="Una Familia Que Ayuda">
+    <meta name="application-name" content="Una Familia Que Ayuda">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff"> 
+    
+    
+    <link rel="stylesheet" href="{% static 'casos/main.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <script src="{% static 'navbar.js' %}"></script>
+<body>
+    <div class="mobile-page">
+        <div class="banner-mobile">
+            <div class="mobile-navbar-var2">
+                <div class="navbar-logo">
+                    <a href="/"><img src="{% static 'assets/logo-1-x.png' %}" width="40%" alt=""></a>
+                </div>
+                <div class="navbar-expand-icon-2"><i class="bi bi-list"></i></div>
+            </div>
+            <div class="navbar-expanded">
+                <div class="navbar-expanded-container">
+                    <div class="navbar-expanded-container-item"><a href="/">Inicio</a></div>
+                    <br>
+                    <div class="navbar-expanded-container-item"><a href="/about/">Descubrir</a></div>
+                    <div class="navbar-expanded-container-item"><a href="/allcases/">Campañas</a></div>
+                    <br>
+                    <div class="navbar-expanded-container-item"><a href="https://www.instagram.com/unafa_miliaqueayuda19/">Contáctanos</a></div>
+                    <div class="navbar-expanded-container-item"><a href="/about/#quienes-somos">Quienes Somos</a></div>
+                    <div class="navbar-expanded-container-item"><a href="/about/">Nuestro Equipo</a></div>
+                    <div class="navbar-expanded-container-item"><a href="/about/#mision">Misión y Visión</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="page-margin">
+                <div class="page-content-title">Nuestras Campañas</div>
+                <div class="page-content-title-caption">Por medio de estas campañas nos ayudas a transformar el mundo.</div>
+                <div class="page-content-title-caption" style="color: #111; font-weight: 600; margin-top: 1.5vh;">Haz click en la imagen para ver la campaña.</div>
+                
+                <div class="campaigns-container">
+                    {% for caso in allcases %} 
+                        <div class="campaign-item" style="margin-bottom: 2vh;">
+                            <div class="campaign-image"><a href="/case/{{ caso.caseid }}/"><img src="/media/{{ caso.banner }}" alt=""></a></div>
+                            <div class="campaign-content">
+                                <div class="campaign-title"><a href="/case/{{ caso.caseid }}/">{{ caso.titulo }}</a></div>
+                                <div class="campaign-text">{{ caso.desc }}</div>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                    
+                </div>
+            </div>
+
+
+            
+
+            <div class="blue-frame-mobile" style="margin-top: 2vw;">
+                <div class="texto-contacto">Únete hoy a un movimiento que <b>mejora vidas.
+                    Todos podemos ser héroes cuando nos unimos para ayudar</b>
+                </div>
+                <div class="contactanos-text">
+                    <div class="text-itself-contact">Contáctanos</div>
+                    <div class="contact-icons">
+<div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-instagram"></i></a></div>
+                        <div class="icon"><a href="https://www.tiktok.com/@unafamiliaqueayuda19"><i class="bi bi-tiktok"></i></a></div>
+                        <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-facebook"></i></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-footer">
+               <div class="mobile-footer-section">
+                    <div class="section-title">Acerca de</div>
+                    <div class="section-items">
+                        <a href="/about/">Sobre Nosotros</a> <br>
+                        <a href="/about/">Misión y Visión</a> <br>
+                        <a href="/about/">Únete a noostros</a> <br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section">
+                    <div class="section-title">Campañas</div>
+                    <div class="section-items">
+                        <a href="/allcases/">Todas las campañas</a> <br>
+                        <a href="https://wa.me/584123341682">Donar a UFQA</a> <br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section">
+                    <div class="section-title">Contacto</div>
+                    <div class="section-items">
+                        <a href="https://www.instagram.com/unafa_miliaqueayuda19/">Instagram <br>
+                        <a href="https://www.tiktok.com/@unafamiliaqueayuda19">TikTok <br>
+                        <a href="/about/">PR<br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section" style="">
+                    <img src="{% static 'assets/logoblack.png' %}" alt="">
+                </div>
+            </div>
+            
+        </div>
+        <div class="copyright-text-mobile">Una Familia Que Ayuda. All Copyrights reserved. 2024.</div>
+    </div>
+</body>
+</html>

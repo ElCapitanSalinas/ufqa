@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | UFQA</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#ff004d">
+    <meta name="apple-mobile-web-app-title" content="Una Familia Que Ayuda">
+    <meta name="application-name" content="Una Familia Que Ayuda">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff"> 
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ <script>
+        tailwind.config = {
+          theme: {
+          extend: {
+            colors: {
+              rojo: '#FF004D',
+              rojodark: '#8C002A',
+              graynav: '#F4F4F6',
+            },
+            fontFamily: {
+              sans : ["Red Hat Display"]
+            },
+            lineHeight: {
+              // '12': '6rem',
+            },
+            spacing: {
+              '10': '100px',
+            },
+          }
+        },
+        }
+      </script>
+
+    <link rel="stylesheet" href="{% static 'admin/tailwind.config.js' %}">
+</head>
+<body style="">
+    <div class="flex flex-row min-h-screen bg-gray-200">
+        <div class="basis-1/6 bg-gray-200 px-0 py-8 flex flex-col">
+
+            <div class="flex flex-row mx-4 justify-center">
+                <div class="w-9"><img src="{% static './assets/logo_ufqa.png' %}" style="left: 0; right: 0; margin: 0 auto;" alt="" srcset=""></div>
+                <div class="w-32 my-1 mx-4 font-bold">UFQA Admin</div>
+            </div>
+            <div class="w-auto bg-gray-300 h-0.5 mt-5"></div>
+            <div class="cursor-pointer mt-10 mx-9 px-1 py-2 rounded-md text-left font-semibold flex flex-row text-md hover:text-black hover:bg-gray-100 text-gray-400 transition duration-500 hover:font-bold"> <div class="px-4 leading-12"><i class="fa-solid fa-house"></i></div><div class="ml-3 text-black font-bold"><a href="../">Home</a></div></div>
+            <div class="cursor-pointer mt-24 my-1 mx-9 px-1 py-2 rounded-md text-left font-semibold flex flex-row text-md hover:text-black hover:bg-gray-100 text-gray-400 transition duration-500 hover:font-bold"> <div class="px-4"><i class="fa-regular fa-clipboard"></i></div><div class="ml-3 text-black font-bold"><a href="../casos/">Ver Campañas</a></div></div>
+            <!-- <div class="cursor-pointer my-1 mx-9 px-1 py-2 rounded-md text-left font-semibold flex flex-row text-md hover:text-black hover:bg-gray-100 text-gray-400 transition duration-500 hover:font-bold"> <div class="px-4"><i class="fa-solid fa-chart-simple"></i></div><div class="ml-3 text-black font-bold">Estadísticas</div></div> -->
+            <div class="cursor-pointer my-1 mx-9 px-1 py-2 rounded-md text-left font-semibold flex flex-row text-md hover:text-black hover:bg-gray-100 text-gray-400 transition duration-500 hover:font-bold"> <div class="px-4"><i class="fa-solid fa-pencil"></i></div><div class="ml-3 text-black font-bold"><a href="../../admin/contenido/">Contenido</a></div></div>
+            <!-- <div class="cursor-pointer my-1 mx-9 px-1 py-2 rounded-md text-left font-semibold flex flex-row text-md hover:text-black hover:bg-gray-100 text-gray-400 transition duration-500 hover:font-bold"> <div class="px-4"><i class="fa-solid fa-heart"></i></div><div class="ml-3 text-black font-bold">Donadores</div></div> -->
+            <!-- <div class="cursor-pointer my-1 mx-9 px-1 py-2 rounded-md text-left font-semibold flex flex-row text-md hover:text-black hover:bg-gray-100 text-gray-400 transition duration-500 hover:font-bold"> <div class="px-4"><i class="fa-solid fa-code"></i></div><div class="ml-3 text-black font-bold">Desarrollador</div></div> -->
+            <div class="cursor-pointer my-1 mx-9 px-1 py-2 mt-96 rounded-md text-left font-semibold flex flex-row text-md hover:text-black hover:bg-gray-100 text-gray-400 transition duration-500 hover:font-bold"> <div class="px-4"><i class="fa-solid fa-right-from-bracket"></i></div><div class="ml-3 text-black font-bold"><a href="../">Salir</a></div></div>
+        </div>
+        <div class="basis-5/6 bg-gray-50 rounded-3xl my-2 w-full drop-shadow-2xl p-10">
+            <div class="w-11/12 flex flex-row mx-9">
+                <div class="w-full h-72">
+                    <div class="font-bold text-2xl my-3">Todas las Campañas</div>
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-900 dark:text-gray-800">
+                            <thead class="text-xs text-gray-100 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-100">
+                                <tr>
+                                    <th scope="col" class="px-6 pr-16 py-3">
+                                        Campaña
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Engagement
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Recolectado
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Recaudo
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Objetivo
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for caso in casos %} 
+                                    <tr class="odd:bg-white odd:dark:bg-gray-200 even:bg-gray-50 even:dark:bg-gray-200 border-b dark:border-gray-300">
+                                        <th scope="row" class="px-6 pr-16 py-4 font-bold text-black whitespace-nowrap dark:text-black">
+                                            {{ caso.titulo }}
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            No medido
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            ${{ caso.recolectado }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ caso.get_percentage|floatformat:-1 }}%
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            ${{ caso.meta }}
+                                        </td>
+                                        <td class="px-3 pr-6 py-4 flex flex-row justify-around">
+                                            <div class="px-3 py-1 bg-green-400 hover:bg-green-700 rounded-md cursor-pointer text-center duration-300">
+                                                <a href="/admin/casos/vercaso/{{ caso.id }}/" class="font-medium text-black dark:text-black"><i class="fa-solid fa-eye"></i></a>
+                                            </div>
+                                            <div class="px-2 py-1 bg-orange-300 hover:bg-orange-700 rounded-md cursor-pointer text-center duration-300">
+                                                <a href="/admin/casos/editarcaso/{{ caso.id }}/" class="font-medium text-black dark:text-black"><i class="fa-solid fa-pencil"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %} 
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-4 py-1.5 mx-12 absolute bg-blue-600 my-5 right-32 text-white font-semibold rounded-md cursor-pointer hover:scale-110 duration-200"><a href="./crearcaso/">Crear campaña</a></div>
+            </div>
+            
+            
+        </div>
+      </div>
+</body>
+</html>
