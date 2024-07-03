@@ -1,0 +1,293 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Familia Que Ayuda</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#ff004d">
+    <meta name="apple-mobile-web-app-title" content="Una Familia Que Ayuda">
+    <meta name="application-name" content="Una Familia Que Ayuda">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff"> 
+    
+    
+    <link rel="stylesheet" href="{% static 'mainpage/main.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <script src="{% static 'navbar.js' %}"></script>
+   
+</head>
+<body style="overflow-x: hidden;">
+    <!-- <div class="guide"></div> -->
+    <div class="mobile-page">
+        <div class="navbar-expanded-full">
+            <div class="navbar-expanded-container" style="margin-top: 0vh;">
+                <div class="navbar-expanded-container-item closeNavbar" style="font-size: 3rem;"><i class="bi bi-x"></i></div>
+                <br>
+                <div class="navbar-expanded-container-item"><a href="/">Inicio</a></div>
+                <br>
+                <div class="navbar-expanded-container-item"><a href="/about/">Descubrir</a></div>
+                <div class="navbar-expanded-container-item"><a href="/allcases/">Campañas</a></div>
+                <br>
+                <div class="navbar-expanded-container-item"><a href="https://www.instagram.com/unafa_miliaqueayuda19/">Contáctanos</a></div>
+                <div class="navbar-expanded-container-item"><a href="/about/#quienes-somos">Quienes Somos</a></div>
+                <div class="navbar-expanded-container-item"><a href="/about/">Nuestro Equipo</a></div>
+                <div class="navbar-expanded-container-item"><a href="/about/#mision">Misión y Visión</a></div>
+            </div>
+        </div>
+        <div class="banner-mobile">
+            <div class="mobile-navbar">
+                <div class="navbar-logo">
+                    
+                    <img src="{% static 'assets/logo-1-x.png' %}" alt="">
+                </div>
+                <div class="navbar-expand-icon"><i class="bi bi-list"></i></div>
+            </div>
+            <div class="banner-content">
+                <div class="mobile-title">Una Familia Que Ayuda</div>
+                <div class="mobile-banner-caption">Una familia que ayuda es un proyecto benefactor diseñado por una familia que busca mejorar el mundo, con la misión de cambiar las vidas de las personas que lo necesitan. Te invitamos a unirte a nuestra causa y trabajar juntos para hacer un mundo mejor.</div>
+                <div class="mobile-vermas btnvermas"><a href="#next">VER MÁS</a></div>
+            </div>      
+        </div>
+        <div class="banner-desktop" style="display: none;">
+            <div class="mobile-navbar">
+                <div class="search-bar">
+                    <input type="search" name="" placeholder="Buscar..." id="search">
+                </div>
+                <div class="navbar-expand-icon"><i class="bi bi-list"></i></div>
+            </div>
+            <div class="banner-desktop-division">
+                <div class="banner-content">
+                    <div class="mobile-title">Una Familia Que Ayuda</div>
+                    <div class="mobile-banner-caption">Una familia que ayuda es un proyecto benefactor diseñado por una familia que busca mejorar el mundo con una misión de cambiar las vidas de las personas que lo necesitan. Te invitamos a unirte a nuestra causa y trabajar juntos para hacer un mundo mejor.</div>
+                    <div class="mobile-vermas btnvermas"><a href="#next">VER MÁS</a></div>
+                </div>
+                <div class="banner-logo">
+                        <div class="logo-ufqa"><img src="{% static 'assets/logo_desktop_ufqa.png' %}" alt=""></div>
+                </div>
+            </div>
+           
+            
+        </div>
+        <div class="page-content">
+            <div class="page-margin">
+                <div class="page-content-title" id="next">Ayúdanos a crear un mundo mejor</div>
+                <div class="page-content-title-caption">Su generosidad puede marcar una gran diferencia. Juntos, podemos crear un futuro mejor para aquellos que lo necesitan. Su donación, por pequeña que sea, puede tener un impacto duradero en las vidas de aquellos a quienes ayudamos.</div>
+
+                 <div class="carrusel-movil">
+                    {% for case in casos %}
+                        {% if forloop.first %}
+                            <div class="item-carrusel-movil active-carrusel" id="case-{{ forloop.counter }}" >
+                                <div class="item-carrusel-movil-img" data-id="{{ forloop.counter }}"><img src="/media/{{ case.banner }}" alt=""></div>
+                                <div class="item-carrusel-movil-info">
+                                    <div class="item-carrusel-movil-info-title">{{ case.titulo }}</div>
+                                    <div class="item-carrusel-movil-info-desc">{{ case.desc }}</div>
+                                    <div class="item-carrusel-movil-info-progbar" style="">
+                                        <div class="item-carrusel-movil-info-progbar-fill" style="width: {{ case.porc|floatformat:-0 }}%;"></div>
+                                    </div>
+                                    <div class="item-carrusel-movil-info-money">
+                                        <div class="collected">{{ case.recolectado }}$ Recaudados</div>
+                                        <div class="percent"> {{ case.porc|floatformat:-0}}%</div>
+                                    </div>
+                                    <div class="item-carrusel-movil-info-btns">
+                                        <div class="item-carrusel-movil-btn"><a href="/case/{{ case.caseid }}/">DONAR</a></div>
+                                        <div class="item-carrusel-movil-btn carrusel-vermas"><a href="/case/{{ case.caseid }}/">VER MÁS</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="item-carrusel-movil" id="case-{{ forloop.counter }}">
+                                <div class="item-carrusel-movil-img" data-id="{{ forloop.counter }}"><img src="/media/{{ case.banner }}" alt=""></div>
+                                <div class="item-carrusel-movil-info">
+                                    <div class="item-carrusel-movil-info-title">{{ case.titulo }}</div>
+                                    <div class="item-carrusel-movil-info-desc">{{ case.desc }}</div>
+                                    <div class="item-carrusel-movil-info-progbar" style="">
+                                        <div class="item-carrusel-movil-info-progbar-fill" style="width: {{ case.porc|floatformat:-0 }}%;"></div>
+                                    </div>
+                                    <div class="item-carrusel-movil-info-money">
+                                        <div class="collected">{{ case.recolectado }}$ Recaudados</div>
+                                        <div class="percent"> {{ case.porc|floatformat:-0}}%</div>
+                                    </div>
+                                    <div class="item-carrusel-movil-info-btns">
+                                        <div class="item-carrusel-movil-btn"><a href="/case/{{ case.caseid }}/">DONAR</a></div>
+                                        <div class="item-carrusel-movil-btn carrusel-vermas"><a href="/case/{{ case.caseid }}/">VER MÁS</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div> 
+
+            <div class="showcases-mobile">
+                {% for case in impcasos %}
+                <div class="item-carrusel-movil mobile-item" style="width: 90%; ">
+                    <div class="item-carrusel-movil-img" style="height: 45%;"><img src="/media/{{ case.banner }}" alt=""></div>
+                    <div class="item-carrusel-movil-info" >
+                        <div class="item-carrusel-movil-info-title">{{ case.titulo }}</div> 
+                        <div class="item-carrusel-movil-info-desc" style="margin-top: -1vh; width: 90%;">{{ case.desc }}</div>
+                        <div class="item-carrusel-movil-info-progbar" style="margin-top: 4vh;">
+                            <div class="item-carrusel-movil-info-progbar-fill" style="width: {{ case.porc|floatformat }}%"></div>
+                        </div>
+                        <div class="item-carrusel-movil-info-money" style="margin-top: 1vh;">
+                            <div class="collected">{{ case.recolectado }}$ Recaudados</div>
+                            <div class="percent">{{ case.porc|floatformat:-1 }}%</div>
+                        </div>
+                        <div class="item-carrusel-movil-info-btns" style="margin-top: 1vh;">
+                            <div class="item-carrusel-movil-btn"><a href="/case/{{ case.caseid }}/">DONAR</a></div>
+                            <div class="item-carrusel-movil-btn carrusel-vermas"><a href="/case/{{ case.caseid }}/">VER MÁS</a></div>
+                        </div>
+    
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="showcases-desktop" style="display: none;">
+                <div class="container-showcases">
+                    {% for caso in impcasos %}
+                        <div class="item-carrusel-movil" style="width: 45%; left: 0; right: 0; margin: 0 auto; margin-top: 3vh; ">
+                            <div class="item-carrusel-movil-img" style=""><img src="/media/{{ caso.banner }}" style="margin-top: -1.5vh;" alt=""></div>
+                            <div class="item-carrusel-movil-info" style="width: 80%; margin-top: -.5vw;">
+                                <div class="item-carrusel-movil-info-title" style="width: 75%;">{{ caso.titulo }}</div> 
+                                <div class="item-carrusel-movil-info-desc" style="margin-top: 4vh; width: 90%;">{{ caso.desc }}</div>
+                                <div class="item-carrusel-movil-info-progbar" style="width: 80%; margin-top: 2vh;">
+                                    <div class="item-carrusel-movil-info-progbar-fill" style="width: {{ caso.porc|floatformat:-1 }}%;" data-porc="{{ caso.porc }}"></div>
+                                </div>
+                                <div class="item-carrusel-movil-info-money" style="width: 80%; margin-top: 1vh;">
+                                    <div class="collected" style="">{{ caso.recolectado }}$ Recaudados</div>
+                                    <div class="percent">{{ caso.porc|floatformat:-1 }}%</div>
+                                </div>
+                                <div class="item-carrusel-movil-info-btns" style="margin-top: .5vh;">
+                                    <div class="item-carrusel-movil-btn"><a href="/case/{{ caso.caseid }}/">DONAR</a></div>
+                                    <div class="item-carrusel-movil-btn carrusel-vermas"><a href="/case/{{ caso.caseid }}/">VER MÁS</a></div>
+                                </div>
+            
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+             
+            </div>
+            <div class="btnmascasos"><a href="/allcases/">MÁS CASOS</a></div>
+            <div class="blue-frame-mobile" >
+                <div class="texto-contacto">Únete hoy a un movimiento que <b>mejora vidas. Todos podemos ser héroes cuando nos unimos para ayudar</b></div>
+                <div class="contactanos-text">
+                    <div class="text-itself-contact">Contáctanos</div>
+                    <div class="contact-icons">
+                        <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-instagram"></i></a></div>
+                        <div class="icon"><a href="https://www.tiktok.com/@unafamiliaqueayuda19"><i class="bi bi-tiktok"></i></a></div>
+                        <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-facebook"></i></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-whois-ufqa" >
+                <div class="mobile-ufqa-title">¿Qué es UFqA?</div>
+                <div class="mobile-ufqa-caption">Una Familia que Ayuda es una fundación sin fines de lucro dedicada a mejorar las vidas de las personas que lo necesitan.Esta fundación fue establecida por una familia que quería hacer una diferencia en el mundo y ayudar a quienes lo necesitan. <br><br>
+                    La familia trabaja duro para recaudar fondos y promover el bienestar de sus miembros de la comunidad y de todo el mundo. Algunos de los esfuerzos de la fundación incluyen donaciones a organizaciones benéficas, apoyo a programas educativos, proyectos de salud y atención médica y ayuda para personas con necesidades especiales.</div>
+                <div class="mobile-ufqa-logo"><img src="{% static 'assets/logo_ufqa.png' %}" class="ufqa-logo" alt=""></div>
+            </div>
+            <div class="mobile-footer">
+                <div class="mobile-footer-section">
+                    <div class="section-title">Acerca de</div>
+                    <div class="section-items">
+                        <a href="/about/">Sobre Nosotros</a> <br>
+                        <a href="/about/">Misión y Visión</a> <br>
+                        <a href="/about/">Únete a noostros</a> <br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section">
+                    <div class="section-title">Campañas</div>
+                    <div class="section-items">
+                        <a href="/allcases/">Todas las campañas</a> <br>
+                        <a href="https://wa.me/584123341682">Donar a UFQA</a> <br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section">
+                    <div class="section-title">Contacto</div>
+                    <div class="section-items">
+                        <a href="https://www.instagram.com/unafa_miliaqueayuda19/">Instagram <br>
+                        <a href="https://www.tiktok.com/@unafamiliaqueayuda19">TikTok <br>
+                        <a href="/about/">PR<br>
+                    </div>
+                </div>
+                <div class="mobile-footer-section" style="">
+                    <img src="{% static 'assets/logoblack.png' %}" alt="">
+                </div>
+            </div>
+            
+        </div>
+        <div class="copyright-text-mobile">Una Familia Que Ayuda. All Copyrights reserved. 2024.</div>
+    </div>
+    <script>
+        let carrusel = 1
+        $(document).ready(function () {
+            function alternateImgs(){
+                console.log($(window).width(), $(window).width() > 1025)
+                if ($(window).width() > 1025){
+                    $('#case-'+carrusel).animate({width: '5vw'}, 400, function() {
+                    $('#case-'+carrusel).removeClass('active-carrusel')
+                    carrusel = carrusel+1
+                    if ($('#case-'+carrusel).length) {
+                        $('#case-'+carrusel).animate({width: '32vw'}, 400, function() {
+                            $('#case-'+carrusel).addClass('active-carrusel');
+                        })
+                    } else {
+                        carrusel = 1
+                        $('#case-'+carrusel).animate({width: '32vw'}, 400, function() {
+                            $('#case-'+carrusel).addClass('active-carrusel');
+                        })
+                    }
+                        setTimeout(() => {
+                            alternateImgs();
+                        }, 10000);
+                    });
+                } else {
+                    $('#case-'+carrusel).fadeOut(1500, function () { 
+                        $('#case-'+carrusel).removeClass('active-carrusel')
+                        carrusel = carrusel+1
+                        if ($('#case-'+carrusel).length) {
+                            // $('#case-'+carrusel).fadeIn(1500, function () { 
+                                $('#case-'+carrusel).addClass('active-carrusel');
+                            // });
+                        } else {
+                            carrusel = 1
+                            // $('#case-'+carrusel).fadeIn(1500, function () { 
+                                $('#case-'+carrusel).addClass('active-carrusel');
+                            // });
+                        }
+                            setTimeout(() => {
+                                alternateImgs();
+                            }, 10000);
+                    });
+                }    
+            }
+
+            setTimeout(() => {
+                alternateImgs()
+            }, 10000);
+        });
+
+        $('.item-carrusel-movil-img').click(function (e) { 
+            e.preventDefault();
+            $('#case-'+carrusel).animate({width: '5vw'}, 400, function() {
+                
+            });
+            $('#case-'+carrusel).removeClass('active-carrusel')
+            carrusel = $(this).data('id');
+            $('#case-'+carrusel).animate({width: '32vw'}, 400, function() {
+                $('#case-'+carrusel).addClass('active-carrusel');
+            });
+        });
+    </script>
+</body>
+</html>
