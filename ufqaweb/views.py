@@ -259,6 +259,8 @@ def editcase(request, id):
                 caso.beneficiados = request.POST['benefits'] 
                 caso.ubicacion = request.POST['location']
                 caso.tiktok_url = request.POST['tiktokurl']
+                caso.cedula = request.POST['cedula']
+                caso.telefono = request.POST['telefono']
 
                 directDonation = False
                 if request.POST.get('directDonation', '0') == 'True' :
@@ -300,7 +302,7 @@ def uploadCase(request):
                     directDonation = True
                 else:
                     directDonation = False
-                newCampaign = Casos(titulo = request.POST['campaign_title'], descb = request.POST['short_desc'], descl = request.POST['long_desc'], meta = request.POST['objective'], recolectado = request.POST['collected'], beneficiados = request.POST['benefits'], ubicacion = request.POST['location'], directDonation = directDonation, accNumber = request.POST['account'], accBank = request.POST['bank'] )
+                newCampaign = Casos(titulo = request.POST['campaign_title'], descb = request.POST['short_desc'], descl = request.POST['long_desc'], meta = request.POST['objective'], recolectado = request.POST['collected'], beneficiados = request.POST['benefits'], ubicacion = request.POST['location'], directDonation = directDonation, accNumber = request.POST['account'], accBank = request.POST['bank'], cedula = request.POST['cedula'], telefono = request.POST['telefono'] )
                 newCampaign.save()
                 print('GUARDADO')
                 return HttpResponseRedirect(f'/admin/casos/')

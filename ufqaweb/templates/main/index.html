@@ -33,15 +33,15 @@
             <div class="navbar-expanded-container" style="margin-top: 0vh;">
                 <div class="navbar-expanded-container-item closeNavbar" style="font-size: 3rem;"><i class="bi bi-x"></i></div>
                 <br>
-                <div class="navbar-expanded-container-item"><a href="/">Inicio</a></div>
+                <a href="/"><div class="navbar-expanded-container-item">Inicio</div></a>
                 <br>
-                <div class="navbar-expanded-container-item"><a href="/about/">Descubrir</a></div>
-                <div class="navbar-expanded-container-item"><a href="/allcases/">Campañas</a></div>
+                <a href="/about/"><div class="navbar-expanded-container-item">Descubrir</div></a>
+                <a href="/allcases/"><div class="navbar-expanded-container-item">Campañas</div></a>
                 <br>
-                <div class="navbar-expanded-container-item"><a href="https://www.instagram.com/unafa_miliaqueayuda19/">Contáctanos</a></div>
-                <div class="navbar-expanded-container-item"><a href="/about/#quienes-somos">Quienes Somos</a></div>
-                <div class="navbar-expanded-container-item"><a href="/about/">Nuestro Equipo</a></div>
-                <div class="navbar-expanded-container-item"><a href="/about/#mision">Misión y Visión</a></div>
+                <a href="https://www.instagram.com/unafa_miliaqueayuda19/"><div class="navbar-expanded-container-item">Contáctanos</div></a>
+                <a href="/about/#quienes-somos"><div class="navbar-expanded-container-item">Quienes Somos</div></a>
+                <a href="/about/"><div class="navbar-expanded-container-item">Nuestro Equipo</div></a>
+                <a href="/about/#mision"><div class="navbar-expanded-container-item">Misión y Visión</div></a>
             </div>
         </div>
         <div class="banner-mobile">
@@ -61,7 +61,7 @@
         <div class="banner-desktop" style="display: none;">
             <div class="mobile-navbar">
                 <div class="search-bar">
-                    <input type="search" name="" placeholder="Buscar..." id="search">
+                    {% comment %} <input type="search" name="" placeholder="Buscar..." id="search"> {% endcomment %}
                 </div>
                 <div class="navbar-expand-icon"><i class="bi bi-list"></i></div>
             </div>
@@ -186,7 +186,7 @@
                     <div class="contact-icons">
                         <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-instagram"></i></a></div>
                         <div class="icon"><a href="https://www.tiktok.com/@unafamiliaqueayuda19"><i class="bi bi-tiktok"></i></a></div>
-                        <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-facebook"></i></a></div>
+
                     </div>
                 </div>
             </div>
@@ -202,7 +202,7 @@
                     <div class="section-items">
                         <a href="/about/">Sobre Nosotros</a> <br>
                         <a href="/about/">Misión y Visión</a> <br>
-                        <a href="/about/">Únete a noostros</a> <br>
+                        <a href="https://wa.me/584123341682">Únete a nosotros</a> <br>
                     </div>
                 </div>
                 <div class="mobile-footer-section">
@@ -252,23 +252,7 @@
                         }, 10000);
                     });
                 } else {
-                    $('#case-'+carrusel).fadeOut(1500, function () { 
-                        $('#case-'+carrusel).removeClass('active-carrusel')
-                        carrusel = carrusel+1
-                        if ($('#case-'+carrusel).length) {
-                            // $('#case-'+carrusel).fadeIn(1500, function () { 
-                                $('#case-'+carrusel).addClass('active-carrusel');
-                            // });
-                        } else {
-                            carrusel = 1
-                            // $('#case-'+carrusel).fadeIn(1500, function () { 
-                                $('#case-'+carrusel).addClass('active-carrusel');
-                            // });
-                        }
-                            setTimeout(() => {
-                                alternateImgs();
-                            }, 10000);
-                    });
+                   
                 }    
             }
 

@@ -28,6 +28,8 @@ class Casos(models.Model):
     directDonation = models.BooleanField()
     accNumber = models.CharField(max_length=200, null=True)
     accBank = models.CharField(max_length=200, null=True)
+    cedula = models.CharField(max_length=200, null=True)
+    telefono = models.CharField(max_length=200, null=True)
 
     def get_percentage(self):
         perc = self.recolectado * 100 / self.meta

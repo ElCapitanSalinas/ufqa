@@ -25,6 +25,7 @@
     
     <link rel="stylesheet" href="{% static 'navbar.css' %}">
     <script src="{% static 'navbar.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <div class="mobile-page">
@@ -32,21 +33,21 @@
             <div class="banner-mobile" style="background-image: url('/media/{{ bannerimgs.0.image }}');">
                 <div class="mobile-navbar-var3">
                     <div class="navbar-logo">
-                        <a href="/"><img src="{% static 'assets/logo-1-x.png' %}" width="40%" alt=""></a>
+                        <a href="/"><img src="{% static 'assets/logo-1-x.png' %}" width="35%" alt=""></a>
                     </div>
                     <div class="navbar-expand-icon-2"><i class="bi bi-list"></i></div>
                 </div>
                 <div class="navbar-expanded">
                     <div class="navbar-expanded-container">
-                        <div class="navbar-expanded-container-item"><a href="/">Inicio</a></div>
+                        <a href="/"><div class="navbar-expanded-container-item">Inicio</div></a>
                         <br>
-                        <div class="navbar-expanded-container-item"><a href="/about/">Descubrir</a></div>
-                        <div class="navbar-expanded-container-item"><a href="/allcases/">Campañas</a></div>
+                        <a href="/about/"><div class="navbar-expanded-container-item">Descubrir</div></a>
+                        <a href="/allcases/"><div class="navbar-expanded-container-item">Campañas</div></a>
                         <br>
-                        <div class="navbar-expanded-container-item"><a href="https://www.instagram.com/unafa_miliaqueayuda19/">Contáctanos</a></div>
-                        <div class="navbar-expanded-container-item"><a href="/about/#quienes-somos">Quienes Somos</a></div>
-                        <div class="navbar-expanded-container-item"><a href="/about/">Nuestro Equipo</a></div>
-                        <div class="navbar-expanded-container-item"><a href="/about/#mision">Misión y Visión</a></div>
+                        <a href="https://www.instagram.com/unafa_miliaqueayuda19/"><div class="navbar-expanded-container-item">Contáctanos</div></a>
+                        <a href="/about/#quienes-somos"><div class="navbar-expanded-container-item">Quienes Somos</div></a>
+                        <a href="/about/"><div class="navbar-expanded-container-item">Nuestro Equipo</div></a>
+                        <a href="/about/#mision"><div class="navbar-expanded-container-item">Misión y Visión</div></a>
                     </div>
                 </div>
             </div>
@@ -87,7 +88,11 @@
                     {% if caso.directDonation == 1 %}
                         <div class="btn directly" data-toggle="modal" data-target="#myModal">DONAR DIRECTAMENTE</div>
                     {% endif %}
-                    <div class="btn share"><a href="whatsapp://send?text=Mira esta campaña en UFQA! Vamos a transformar el mundo." data-action="share/whatsapp/share">COMPARTIR</a></div>
+                    <div class="btn share sharebtn">COMPARTIR</div>
+                    {% if caso.tiktok_url %}
+                        <div class="btn share"><a href="{{ caso.tiktok_url }}" target=”_blank”><i class="fa-brands fa-tiktok"></i></a></div>
+                    {% endif %}
+                    
                 </div>
                 
                 <div class="line-div"></div>
@@ -186,7 +191,7 @@
                     <div class="contact-icons">
                         <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-instagram"></i></a></div>
                         <div class="icon"><a href="https://www.tiktok.com/@unafamiliaqueayuda19"><i class="bi bi-tiktok"></i></a></div>
-                        <div class="icon"><a href="https://www.instagram.com/unafa_miliaqueayuda19/"><i class="bi bi-facebook"></i></a></div>
+
                     </div>
                 </div>
             </div>
@@ -196,7 +201,7 @@
                     <div class="section-items">
                         <a href="/about/">Sobre Nosotros</a> <br>
                         <a href="/about/">Misión y Visión</a> <br>
-                        <a href="/about/">Únete a noostros</a> <br>
+                        <a href="https://wa.me/584123341682">Únete a nosotros</a> <br>
                     </div>
                 </div>
                 <div class="mobile-footer-section">
@@ -231,6 +236,10 @@
             <div class="card-text">
                 Banco: {{ caso.accBank }}
                 <br>
+                No. de Cedula: {{ caso.cedula }}
+                <br>
+                Telefono: {{ caso.telefono }}
+                <br>
                 No. de cuenta: {{ caso.accNumber }}
                 <br>
                 No te olvides de incluir tu nombre en los detalles!
@@ -251,6 +260,37 @@
                     });
                   
                 });
+
+            } else {
+                
+                let triggered = null
+
+                $(window).click(function() {
+                    if (triggered !== null) {
+                        $(triggered).css('transform', 'scale(1, 1)');
+                        $(triggered).css('z-index', '0');
+                    }
+                });
+
+                $('.galeria-item').click(function (e) { 
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    console.log('click')
+                    if (triggered !== null) {
+                        $(triggered).css('transform', 'scale(1, 1)');
+                        $(triggered).css('z-index', '0');
+
+                        $(this).css('transform', 'scale(2, 2)');
+                        $(this).css('z-index', '2');
+                        triggered = this
+                    } else {
+                        $(this).css('transform', 'scale(2, 2)');
+                        $(this).css('z-index', '2');
+                        triggered = this
+                    }
+                    
+                });
             }
 
             $('.directly').click(function (e) { 
@@ -261,6 +301,18 @@
             $('.close-btn').click(function (e) { 
                 e.preventDefault();
                 $('#bankfunctions').fadeOut();
+            });
+
+            $('.sharebtn').click(function (e) { 
+                e.preventDefault();
+                
+                const shareData = {
+                    title: 'Una Familia Que Ayuda',
+                    text: 'Mira esta campaña en UFQA!',
+                    url: window.location.href,
+                }
+
+                navigator.share(shareData)
             });
         });
     </script>
